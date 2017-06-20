@@ -114,12 +114,14 @@ export default class Page extends Component {
             id="zoomContainer"
             className="zoomContainer"
             onClick={this.handleContainerClick}
+            selected={frame === undefined}
           >
             { Frames.map((Frame, index) => (
               <Frame
                 key={index}
                 id={`frame${index + 1}`}
                 onClick={this.handleFrameClick(index + 1)}
+                selected={frame === index + 1}
               />
             )) }
           </ZoomContainer>

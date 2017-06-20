@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 
-export const Frame1 = styled.div`
-  background-color: #fcc;
+const Frame = styled.div`
   position: absolute;
+  ${ props => props.selected ? 'cursor: default!important' : 'cursor: pointer' };
+`
+
+export const Frame1 = styled(Frame)`
+  background-color: #fcc;
   left: 50px;
   top: 50px;
   width: 300px;
@@ -10,9 +14,8 @@ export const Frame1 = styled.div`
   border: 1px solid red;
 `
 
-export const Frame2 = styled.div`
+export const Frame2 = styled(Frame)`
   background-color: #ccf;
-  position: absolute;
   bottom: 40px;
   right: 40px;
   width: 300px;
@@ -20,9 +23,8 @@ export const Frame2 = styled.div`
   border: 1px solid blue;
 `
 
-export const Frame3 = styled.div`
+export const Frame3 = styled(Frame)`
   background-color: #cfc;
-  position: absolute;
   top: 0px;
   right: 100px;
   width: 300px;
@@ -31,9 +33,8 @@ export const Frame3 = styled.div`
   transform: rotate(10deg) translate(0px,0px);
 `
 
-export const Frame4 = styled.div`
+export const Frame4 = styled(Frame)`
   background-color: #cff;
-  position: absolute;
   top: 0px;
   left: 0px;
   width: 200px;
@@ -42,9 +43,8 @@ export const Frame4 = styled.div`
   transform: rotate(10deg) translate(200px,200px);
 `
 
-export const Frame5 = styled.div`
+export const Frame5 = styled(Frame)`
   background-color: #99f;
-  position: absolute;
   bottom: 80px;
   right: 80px;
   width: 100px;
@@ -52,9 +52,8 @@ export const Frame5 = styled.div`
   border: 1px solid blue;
 `
 
-export const Frame6 = styled.div`
+export const Frame6 = styled(Frame)`
   background-color: #ffc;
-  position: absolute;
   bottom: 200px;
   left: 200px;
   width: 200px;
