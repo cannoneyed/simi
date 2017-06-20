@@ -11,7 +11,6 @@ export const ZoomContainer = styled.div`
   width: 800px;
   height: 600px;
   position: relative;
-  ${ props => props.selected ? '' : 'cursor: pointer;' };
 `
 
 export const ZoomViewport = styled.div`
@@ -25,6 +24,7 @@ export const ZoomViewport = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 1em;
+  ${ props => props.selected ? '' : 'cursor: pointer;' };
 `
 
 export const Header = styled.h3`

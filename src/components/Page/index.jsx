@@ -94,7 +94,7 @@ export default class Page extends Component {
     })
   }
 
-  handleContainerClick = () => {
+  handleOutsideClick = () => {
     this.goToDest(undefined)
   }
 
@@ -109,12 +109,15 @@ export default class Page extends Component {
     return (
       <PageWrapper>
         <Header>Subghost</Header>
-        <ZoomViewport className="zoomViewport" id="zoomViewport">
+        <ZoomViewport
+          className="zoomViewport"
+          id="zoomViewport"
+          onClick={this.handleOutsideClick}
+          selected={frame === undefined}
+        >
           <ZoomContainer
             id="zoomContainer"
             className="zoomContainer"
-            onClick={this.handleContainerClick}
-            selected={frame === undefined}
           >
             { Frames.map((Frame, index) => (
               <Frame
