@@ -8,7 +8,6 @@ import Navigation from 'src/components/Navigation'
 import Frames from 'src/components/Frames'
 
 import {
-  Header,
   PageWrapper,
   ZoomContainer,
   ZoomViewport,
@@ -62,7 +61,7 @@ export default class Page extends Component {
   previous = () => {
     const frame = this.getFrame()
     const dest = this.getDest({
-      isUndefined: frames.length,
+      isUndefined: Frames.length,
       isFirst: undefined,
       isLast: frame - 1,
       isOther: frame - 1,
@@ -91,6 +90,7 @@ export default class Page extends Component {
     const target = f === undefined ? '#zoomContainer' : `#frame${f}`
     $(target).zoomTo({
       root: $('#zoomContainer'),
+      duration: 1000,
     })
   }
 
@@ -108,7 +108,12 @@ export default class Page extends Component {
 
     return (
       <PageWrapper>
-        <Header>Subghost</Header>
+        <Navigation
+          frame={frame}
+          close={this.close}
+          next={this.next}
+          previous={this.previous}
+        />
         <ZoomViewport
           className="zoomViewport"
           id="zoomViewport"
@@ -129,12 +134,6 @@ export default class Page extends Component {
             )) }
           </ZoomContainer>
         </ZoomViewport>
-        <Navigation
-          frame={frame}
-          close={this.close}
-          next={this.next}
-          previous={this.previous}
-        />
       </PageWrapper>
     )
   }

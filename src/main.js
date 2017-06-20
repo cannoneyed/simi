@@ -13,6 +13,9 @@ import { MobxRouter, startRouter } from 'mobx-router'
 import routes from 'src/config/routes'
 import * as store from 'src/core'
 
+import injectGlobalStyles from './styles/global'
+injectGlobalStyles()
+
 startRouter(routes, store)
 
 enableLogging()
