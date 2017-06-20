@@ -5,44 +5,6 @@ export const PageWrapper = styled.div`
   height: 100%;
 `
 
-export const Navigation = styled.div`
-  width: 800px;
-  position: relative;
-  margin-top: 2em;
-  margin-left: auto;
-  margin-right: auto;
-  height: 70px;
-`
-
-const Arrow = styled.div`
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border: 1px solid #aaa;
-  background-color: #dca;
-  color: white;
-  z-index: 10;
-  font-size: 40px;
-  line-height: 45px;
-  text-align: center;
-  font-family: Helvetica, sans-serif;
-  cursor: pointer;
-  cursor: hand;
-
-  &:hover {
-    background-color:#ba9;
-    border: 1px solid #999;
-  }
-`
-
-export const Prev = styled(Arrow)`
-  left: 0px;
-`
-
-export const Next = styled(Arrow)`
-  right: 0px;
-`
-
 export const ZoomContainer = styled.div`
   margin: 0;
   padding: 0;

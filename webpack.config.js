@@ -27,7 +27,7 @@ const loaders = {
     loader: 'json-loader',
   },
   js: {
-    test: /\.js$/,
+    test: /\.jsx?$/,
     exclude: /node_modules/,
     loader: 'babel-loader',
   },
@@ -75,8 +75,8 @@ const config = {}
 module.exports = config
 
 config.resolve = {
-  extensions: ['', '.ts', '.js'],
-  modulesDirectories: ['node_modules', 'web_modules'],
+  extensions: ['', '.js', '.jsx'],
+  modulesDirectories: ['node_modules'],
   root: path.resolve('.')
 }
 
@@ -137,7 +137,7 @@ if (ENV_DEVELOPMENT) {
 
   config.module = {
     loaders: sharedLoaders.concat([
-      {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader', query: {
+      {test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader', query: {
         plugins: [
           [
             'react-transform',

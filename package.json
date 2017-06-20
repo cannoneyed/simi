@@ -1,16 +1,13 @@
 {
-  "name": "foodwishes",
+  "name": "subghost",
   "version": "0.0.1",
-  "description": "Foodwishes Cordova App",
+  "description": "web audio comic demo",
   "author": {
     "name": "Andy Coenen",
     "email": "andrew.coenen@gmail.com"
   },
   "license": "MIT",
   "private": true,
-  "engines": {
-    "node": "6.3.1"
-  },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --display-chunks --display-modules --progress --json > stats.json",
     "clean": "del-cli ./target",
@@ -80,11 +77,12 @@
     "mobx": "^2.6.0",
     "mobx-react": "^3.5.8",
     "mobx-react-router": "^4.0.1",
+    "mobx-router": "0.0.7",
     "moment": "^2.15.1",
-    "react": "~15.0.2",
+    "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.2.0",
     "react-css-modules": "^3.7.10",
-    "react-dom": "~15.0.2",
+    "react-dom": "^15.6.1",
     "react-infinite": "^0.10.0",
     "react-motion": "^0.4.5",
     "react-router": "~2.4.0",

@@ -1,5 +1,5 @@
-// import recipeStore from './recipes'
+import { RouterStore } from 'mobx-router'
 
 export default {
-  // recipeStore,
+  router: new RouterStore(),
 }
