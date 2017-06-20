@@ -11,7 +11,7 @@ import { useStrict } from 'mobx'
 import { MobxRouter, startRouter } from 'mobx-router'
 
 import routes from 'src/config/routes'
-import store from 'src/core'
+import * as store from 'src/core'
 
 startRouter(routes, store)
 

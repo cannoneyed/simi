@@ -1,11 +1,15 @@
 import React from 'react'
 import { Route } from 'mobx-router'
 
-import Pages from 'src/components/Pages'
+import Page from 'src/components/Page'
 
 export default {
-  pages: new Route({
-    path: '/page/:page',
-    component: <Pages />
+  index: new Route({
+    path: '/',
+    component: <Page />
+  }),
+  frame: new Route({
+    path: '/frame/:frame',
+    component: <Page />
   })
 }
