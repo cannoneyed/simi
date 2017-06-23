@@ -4,8 +4,9 @@ import get from 'lodash.get'
 import { observer } from 'mobx-react'
 import routes from 'src/config/routes'
 
-import Navigation from 'src/components/Navigation'
+import Caption from 'src/components/Caption'
 import Frames from 'src/components/Frames'
+import Navigation from 'src/components/Navigation'
 
 import {
   PageWrapper,
@@ -103,35 +104,53 @@ export default class Page extends Component {
     this.goToDest(selectedFrame)
   }
 
+  renderCaption = () => {
+    const selectedFrame = this.getFrame()
+
+    let caption
+    if (selectedFrame !== undefined) {
+      caption = Frames[selectedFrame - 1].caption
+    } else {
+      caption = ''
+    }
+
+    return (
+      <Caption caption={caption} />
+    )
+  }
+
   render() {
-    const frame = this.getFrame()
+    const selectedFrame = this.getFrame()
 
     return (
       <PageWrapper>
         <Navigation
-          frame={frame}
+          frame={selectedFrame}
           close={this.close}
           next={this.next}
           previous={this.previous}
         />
+        { this.renderCaption() }
         <ZoomViewport
           className="zoomViewport"
           id="zoomViewport"
           onClick={this.handleOutsideClick}
-          selected={frame === undefined}
+          selected={selectedFrame === undefined}
         >
           <ZoomContainer
             id="zoomContainer"
             className="zoomContainer"
           >
-            { Frames.map((Frame, index) => (
-              <Frame
-                key={index}
-                id={`frame${index + 1}`}
-                onClick={this.handleFrameClick(index + 1)}
-                selected={frame === index + 1}
-              />
-            )) }
+            { Frames.map(({ Frame }, index) => {
+              return (
+                <Frame
+                  key={index}
+                  id={`frame${index + 1}`}
+                  onClick={this.handleFrameClick(index + 1)}
+                  selected={selectedFrame === index + 1}
+                />
+              )
+            }) }
           </ZoomContainer>
         </ZoomViewport>
       </PageWrapper>

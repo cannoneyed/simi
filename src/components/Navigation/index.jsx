@@ -1,6 +1,10 @@
 import React, { Component, PropTypes as t } from 'react'
 import styled from 'styled-components'
+import responsive from 'src/libs/responsive'
 
+import Icon from 'src/components/Icon'
+
+@responsive
 export default class Navigation extends Component {
 
   static propTypes = {
@@ -10,80 +14,61 @@ export default class Navigation extends Component {
   }
 
   render() {
-    const { close, next, previous } = this.props
+    const { close, next, previous, responsive } = this.props
+    const { isMobile } = responsive
+
+    const iconSize = isMobile ? 40 : 60
 
     return (
-      <NavigationWrapper id="navigation">
-        <div
-          id="prevButton"
-          className="zoomButton"
-          data-type="prev"
-          data-root=".zoomViewport"
-        />
-        <Prev onClick={previous}>
-          { '<' }
-        </Prev>
-        <div
-          id="closeButton"
-          className="zoomButton"
-          data-type="close"
-          data-root=".zoomViewport"
-        />
-        <Close onClick={close}>
-          { 'X' }
-        </Close>
-        <div
-          id="nextButton"
-          className="zoomButton"
-          data-type="next"
-          data-root=".zoomViewport"
-        />
-        <Next onClick={next}>
-          { '>' }
-        </Next>
+      <NavigationWrapper id="navigation" isMobile={isMobile}>
+        <Button onClick={previous} size={iconSize}>
+          <Icon
+            size={iconSize}
+            color="white"
+            type="left"
+          />
+        </Button>
+        <Button onClick={close} size={iconSize}>
+          <Icon
+            size={iconSize}
+            color="white"
+            type="close"
+          />
+        </Button>
+        <Button onClick={next} size={iconSize}>
+          <Icon
+            size={iconSize}
+            color="white"
+            type="right"
+          />
+        </Button>
       </NavigationWrapper>
     )
   }
 }
 
 const Button = styled.div`
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border: 1px solid #aaa;
-  background-color: #dca;
   color: white;
   z-index: 10;
-  font-size: 40px;
-  line-height: 45px;
-  text-align: center;
-  font-family: Helvetica, sans-serif;
   cursor: pointer;
-  cursor: hand;
+
+  border-radius: 50%;
 
   &:hover {
-    background-color:#ba9;
-    border: 1px solid #999;
+    color: #B5EF8A;
   }
-`
 
-export const Prev = styled(Button)`
-  left: 0px;
-`
-
-export const Next = styled(Button)`
-  right: 0px;
-`
-
-export const Close = styled(Button)`
-  left: 50%;
+  transition: all 200ms linear;
 `
 
 export const NavigationWrapper = styled.div`
-  width: 800px;
-  position: relative;
-  margin-top: 2em;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: ${ props => props.isMobile ? 10 : 20 }px;
+  padding-left: ${ props => props.isMobile ? 30 : 60 }px;
+  padding-right: ${ props => props.isMobile ? 30 : 60 }px;
+  width: 100%;
+  box-sizing: border-box;
   height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `

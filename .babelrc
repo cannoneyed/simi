@@ -9,5 +9,27 @@
     "transform-react-jsx-source",
     "transform-decorators-legacy",
     "transform-class-properties",
-  ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "styled-components", {
+            "displayName": true,
+            "minify": true
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "styled-components", {
+            "displayName": false,
+            "minify": true
+          }
+        ]
+      ]
+    }
+  }
 }

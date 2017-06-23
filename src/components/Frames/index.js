@@ -5,8 +5,10 @@ const Frame = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  transition: all 1000ms linear;
   z-index: ${ props => props.selected ? 10 : 0 };
+  opacity: ${props => props.selected ? 1 : 0.2 };
+  transition: all 1000ms linear;
+  -webkit-backface-visibility: hidden;
   cursor: ${ props => props.selected ? 'default!important' : 'pointer' };
 `
 
@@ -70,12 +72,25 @@ export const Frame7 = styled(Frame)`
   transform: rotate(-30deg) ;
 `
 
-export default [
-  Frame1,
-  Frame2,
-  Frame3,
-  Frame4,
-  Frame5,
-  Frame6,
-  Frame7,
-]
+export default [{
+  Frame: Frame1,
+  caption: 'Here\'s looking at you, kid',
+}, {
+  Frame: Frame2,
+  caption: 'A gift from above...',
+}, {
+  Frame: Frame3,
+  caption: 'What\'s it going to be, then?',
+}, {
+  Frame: Frame4,
+  caption: 'It was the best of times, it was the worst of times',
+}, {
+  Frame: Frame5,
+  caption: 'Never gonna get it never gonna get it',
+}, {
+  Frame: Frame6,
+  caption: 'Some more things, please',
+}, {
+  Frame: Frame7,
+  caption: 'And who knows about you?',
+}]

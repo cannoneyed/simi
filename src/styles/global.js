@@ -6,6 +6,7 @@ export default function injectGlobalStyles() {
     body {
       margin: 0;
       background-color: black;
+      font-family: 'Fira Mono', monospace;
     }
   `
 }

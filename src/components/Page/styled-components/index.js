@@ -16,6 +16,8 @@ export const ZoomViewport = styled.div`
   left: 0px;
   overflow: hidden;
   ${ props => props.selected ? '' : 'cursor: pointer;' };
+
+  transition: all 300ms linear;
 `
 
 export const ZoomContainer = styled.div`
