@@ -6,9 +6,9 @@ const Frame = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   z-index: ${ props => props.selected ? 10 : 0 };
-  opacity: ${props => props.selected ? 1 : 0.2 };
-  transition: all 1000ms linear;
-  -webkit-backface-visibility: hidden;
+  opacity: ${props => props.selected ? 1 : 0.1 };
+  transition: all 2000ms linear;
+  backface-visibility: hidden;
   cursor: ${ props => props.selected ? 'default!important' : 'pointer' };
 `
 

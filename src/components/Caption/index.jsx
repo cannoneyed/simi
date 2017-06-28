@@ -9,12 +9,19 @@ export default class Caption extends Component {
     caption: '',
   }
 
-  componentWillReceiveProps = (nextProps) => {
+  componentDidMount() {
+    if (this.props.caption) {
+      this.fade('in', this.props.caption, 500)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
     const prev = this.props.caption
     const next = nextProps.caption
 
     if (prev === '' && next) {
-      this.fade('in', next)
+      this.fade('out', prev)
+      this.fade('in', next, 500)
     } else if (prev !== next) {
       this.fade('out', prev)
       this.fade('in', next, 500)

@@ -7,6 +7,7 @@ import routes from 'src/config/routes'
 import Caption from 'src/components/Caption'
 import Frames from 'src/components/Frames'
 import Navigation from 'src/components/Navigation'
+import Title from 'src/components/Title'
 
 import {
   PageWrapper,
@@ -17,15 +18,21 @@ import {
 @observer(['store'])
 export default class Page extends Component {
   componentDidMount() {
+    const audioStore = this.props.store.audio
+
     // Handle initial route-controlled transition
     const frame = this.getFrame()
     if (frame !== undefined) {
       this.selectFrame(frame)
     }
+    audioStore.playIndex(frame || 0)
   }
 
   componentWillUpdate(nextProps) {
     const frame = get(nextProps.store.router, 'params.frame')
+    const audioStore = nextProps.store.audio
+
+    audioStore.playIndex(frame || 0)
     this.selectFrame(frame)
   }
 
@@ -119,6 +126,14 @@ export default class Page extends Component {
     )
   }
 
+  renderTitle = () => {
+    const selectedFrame = this.getFrame()
+
+    return (
+      <Title visible={selectedFrame === undefined} />
+    )
+  }
+
   render() {
     const selectedFrame = this.getFrame()
 
@@ -131,6 +146,7 @@ export default class Page extends Component {
           previous={this.previous}
         />
         { this.renderCaption() }
+        { this.renderTitle() }
         <ZoomViewport
           className="zoomViewport"
           id="zoomViewport"
