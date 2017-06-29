@@ -24,9 +24,6 @@ if (process.env.NODE_ENV === 'development') {
   enableLogging()
 }
 
-console.log('🍕') // eslint-disable-line
-window.store = store
-
 useStrict(true)
 
 const App = (props) => (
