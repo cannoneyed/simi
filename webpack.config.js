@@ -116,7 +116,6 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
     new webpack.optimize.CommonsChunkPlugin('vendor', '[name].js'),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      hash: true,
       inject: 'body',
       template: './src/index.html'
     })
