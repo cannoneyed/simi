@@ -18,7 +18,10 @@ injectGlobalStyles()
 
 startRouter(routes, store)
 
-enableLogging()
+if (process.env.NODE_ENV === 'development') {
+  enableLogging()
+}
+
 useStrict(true)
 
 const rootSelector = '#app-root'
