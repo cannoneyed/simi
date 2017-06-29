@@ -3,9 +3,11 @@ import { Route } from 'mobx-router'
 
 import Page from 'src/components/Page'
 
-
-
 export default {
+  subIndex: new Route({
+    path: '/',
+    component: <Page />
+  }),
   index: new Route({
     path: '/subghost/',
     component: <Page />
