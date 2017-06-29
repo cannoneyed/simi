@@ -3,6 +3,8 @@ import { Route } from 'mobx-router'
 
 import Page from 'src/components/Page'
 
+console.log('🍕') // eslint-disable-line
+
 export default {
   subIndex: new Route({
     path: '/',
