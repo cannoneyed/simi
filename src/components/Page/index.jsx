@@ -1,8 +1,7 @@
 import $ from 'jquery'
 import React, { Component } from 'react'
-import get from 'lodash.get'
+import { get } from 'lodash'
 import { observer } from 'mobx-react'
-import routes from 'src/config/routes'
 
 import Caption from 'src/components/Caption'
 import Frames from 'src/components/Frames'
@@ -14,7 +13,7 @@ import {
   ZoomContainer,
   ZoomViewport,
 } from './styled-components'
-
+//
 @observer(['store'])
 export default class Page extends Component {
   componentDidMount() {
@@ -29,7 +28,7 @@ export default class Page extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    const frame = get(nextProps.store.router, 'params.frame')
+    const frame = get(nextProps, 'params.frame')
     const audioStore = nextProps.store.audio
 
     audioStore.playIndex(frame || 0)
@@ -38,7 +37,7 @@ export default class Page extends Component {
 
   // We'll be using 1-indexed frame numbers
   getFrame = () => {
-    const frame = get(this.props.store.router, 'params.frame')
+    const { frame } = this.props.params
     return frame === undefined ? undefined : frame * 1
   }
 
@@ -57,13 +56,13 @@ export default class Page extends Component {
   }
 
   goToDest = (dest) => {
-    const { goTo } = this.props.store.router
+    const { push } = this.props.store.router
 
     if (dest === undefined) {
-      return goTo(routes.index)
+      return push('/subghost')
     }
 
-    goTo(routes.frame, { frame: dest })
+    push(`/subghost/frame/${dest}`)
   }
 
   previous = () => {

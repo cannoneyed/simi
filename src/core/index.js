@@ -1,4 +1,4 @@
-import { RouterStore } from 'mobx-router'
+import { RouterStore } from 'mobx-react-router'
 import { AudioStore } from './audio'
 
 export const router = new RouterStore()

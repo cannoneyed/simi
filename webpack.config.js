@@ -98,11 +98,8 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
     ],
     vendor: [
       'babel-polyfill',
-      'classnames',
-      'history',
       'react',
       'react-dom',
-      'react-router',
     ]
   }
 
