@@ -3,13 +3,15 @@ import { Route } from 'mobx-router'
 
 import Page from 'src/components/Page'
 
+
+
 export default {
   index: new Route({
-    path: '/',
+    path: '/subghost/',
     component: <Page />
   }),
   frame: new Route({
-    path: '/frame/:frame',
+    path: '/subghost/frame/:frame',
     component: <Page />
   })
 }
