@@ -1,6 +1,7 @@
 import P from 'bluebird'
-import { computed } from 'mobx'
+import { action, computed, observable } from 'mobx'
 
+window.AudioContext = window.AudioContext || window.webkitAudioContext
 const context = new AudioContext()
 
 const minVolume = 0.001
@@ -18,6 +19,10 @@ const tracks = [
 ]
 
 export class AudioStore {
+  static mobxLoggerConfig = {
+    enabled: false
+  }
+
   audioLoaded = false
   buffers = []
   loaded = []
@@ -25,6 +30,7 @@ export class AudioStore {
   isFading = false
   isAudioPlaying = false
 
+  @observable loopPosition
   @computed get activeIndex() {
     return this.activeSource.index
   }
@@ -40,17 +46,16 @@ export class AudioStore {
   loadTrack = (trackUrl, index) => {
     return fetch(trackUrl)
       .then(response => response.arrayBuffer())
-      .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-      .then(audioBuffer => {
+      .then(arrayBuffer => context.decodeAudioData(arrayBuffer, audioBuffer => {
         this.buffers[index] = audioBuffer
         this.loaded[index] = true
 
         // autoplay loaded enqueued track
         if (index === this.enqueuedTrackIndex) {
           this.enqueuedTrackIndex = null
-          this.fadeIn(index)
+          this.firstPlay(index)
         }
-      })
+      }))
   }
 
   loadAudio = () => {
@@ -61,6 +66,21 @@ export class AudioStore {
     })
   }
 
+  firstPlay = (trackIndex) => {
+    this.fadeIn(trackIndex)
+
+    setInterval(() => {
+      const activeSource = this.activeSource
+      const loopDuration = activeSource.buffer.duration
+      const pos = ((context.currentTime - activeSource._startTime) % loopDuration) / loopDuration
+      this.setLoopPosition(pos)
+    }, 100)
+  }
+
+  @action setLoopPosition = (pos) => {
+    this.loopPosition = pos
+  }
+
   fadeIn = (trackIndex = 0, offset = 0) => {
     const source = context.createBufferSource()
     const gainNode = context.createGain()
@@ -68,7 +88,9 @@ export class AudioStore {
 
     gainNode.gain.setValueAtTime(minVolume, context.currentTime)
 
-    source.buffer = this.buffers[trackIndex]
+    const buffer = this.buffers[trackIndex]
+
+    source.buffer = buffer
     source.connect(gainNode)
     gainNode.connect(context.destination)
 
@@ -119,8 +141,8 @@ export class AudioStore {
       this.activeSource = incoming
 
       if (this.enqueuedTrackIndex !== null) {
-        this.enqueuedTrackIndex = null
         this.crossFade(this.enqueuedTrackIndex, this.getOffset())
+        this.enqueuedTrackIndex = null
       }
     }, fadeLength * 1000)
   }
