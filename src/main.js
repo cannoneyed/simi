@@ -22,6 +22,10 @@ if (process.env.NODE_ENV === 'development') {
   enableLogging()
 }
 
+console.log('🐷') // eslint-disable-line
+window.goToIndex = () => store.router.goTo(routes.index)
+window.goToFrame = (frame) => store.router.goTo(routes.frame, { frame })
+
 useStrict(true)
 
 const rootSelector = '#app-root'
