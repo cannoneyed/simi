@@ -109,7 +109,7 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
   config.output = {
     filename: '[name].js',
     path: path.resolve('./docs'),
-    publicPath: '/'
+    publicPath: '/subghost'
   }
 
   config.plugins.push(
